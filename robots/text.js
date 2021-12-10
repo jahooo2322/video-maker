@@ -15,6 +15,9 @@ const content = state.load()
 
 state.save(content)
 
+//const contentString = JSON.stringify(content.searchTerm);
+
+//console.log(content.searchTerm)
 
 /*
 async function fetchImagesOfAllSentences(content){
@@ -34,7 +37,7 @@ for (const sentence of content.sentences){
 }
 */
 
-const imagesArray = await fetchGoogleAndReturnImagesLinks('Michael Jackson')
+const imagesArray = await fetchGoogleAndReturnImagesLinks(content.searchTerm)
 console.dir(imagesArray, {depth: null})
 process.exit(0)
 
@@ -65,11 +68,9 @@ async function fetchGoogleAndReturnImagesLinks(query){
 const response = await customSearch.cse.list({
 auth: googleSearchCredentials.apiKey,
 cx: googleSearchCredentials.searchEngineId, 
-cr: 'pt-BR',
-rl: "lang_pt",
+cr: true,
 q: query,
-searchType: 'image',
-imgSize: 'huge',
+hq: 'historia e turismo',
 num:4
 })
 
