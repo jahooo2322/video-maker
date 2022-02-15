@@ -1,31 +1,21 @@
-const readline = require('readline-sync')
 
-
-function start(){
-
-const content = {}
-
-content.searchTerm = askAndReturnSerchTerm()
-content.prefix = askAndReturnPrefix()
-
-function askAndReturnSerchTerm(){
-return readline.question('Type a wikipedia search term:')
-}
-
-function askAndReturnPrefix(){
-const prefixes = ['Who is', 'What is', 'The history of']
-const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option:')
-const selectedPrefixText  = prefixes[selectedPrefixIndex]
-
-
-//console.log(selectedPrefixText)
-return selectedPrefixText
+const robots = {
+userInput: require('./robots/user-input.js'),    
+wikiText: require('./robots/wiki-text.js'),
+state: require('./robots/state.js'),
+text: require('./robots/text.js'),
+image: require('./robots/image.js'),
 
 }
 
+async function start(){
 
+//await robots.image()
+await robots.wikiText()
 
- console.log(content)
+//const content = robots.state.load()    
+//console.dir(content, {depth: null})
+
 
 
 }
